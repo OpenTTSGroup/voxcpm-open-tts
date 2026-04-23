@@ -1,0 +1,22 @@
+# VoxCPM engine runtime dependencies.
+# Sourced from engine/pyproject.toml, with torch/torchaudio (installed
+# separately in the Dockerfile) and demo-only packages (gradio, spaces) removed.
+torchcodec
+transformers>=4.36.2
+einops
+inflect
+addict
+wetext
+modelscope>=1.22.0
+datasets>=3,<4
+huggingface-hub
+tqdm
+simplejson
+sortedcontainers
+soundfile
+librosa
+matplotlib
+funasr
+argbind
+safetensors
+hf_transfer

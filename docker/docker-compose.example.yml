@@ -1,0 +1,28 @@
+services:
+  voxcpm:
+    image: ghcr.io/openttsgroup/voxcpm-open-tts:latest
+    container_name: voxcpm-open-tts
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./voices:/voices:ro
+      - ./cache:/root/.cache
+    environment:
+      VOXCPM_MODEL: "openbmb/VoxCPM2"
+      LOG_LEVEL: "info"
+      # Uncomment to let browsers call the API from any origin:
+      # CORS_ENABLED: "true"
+      # Uncomment to fall back to CPU on a host without NVIDIA drivers:
+      # VOXCPM_DEVICE: "cpu"
+      # VOXCPM_DTYPE: "float32"
+      # Older VoxCPM / VoxCPM1.5 models auto-downgrade to continuation mode;
+      # set explicitly if you prefer continuation on a v2 model too:
+      # VOXCPM_CLONE_MODE: "continuation"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
