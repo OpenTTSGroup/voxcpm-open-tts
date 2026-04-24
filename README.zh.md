@@ -41,11 +41,11 @@ docker compose up -d
 ```bash
 docker run --rm -p 8000:8000 \
   -v "$PWD/cache:/root/.cache" -v "$PWD/voices:/voices:ro" \
-  -e VOXCPM_DEVICE=cpu -e VOXCPM_DTYPE=float32 -e VOXCPM_OPTIMIZE=false \
+  -e VOXCPM_DEVICE=cpu -e VOXCPM_DTYPE=float32 \
   ghcr.io/openttsgroup/voxcpm-open-tts:latest
 ```
 
-CPU 推理比 RTX 4090 慢约 10 倍，且 `torch.compile` 无益，请关掉 `VOXCPM_OPTIMIZE`。
+CPU 推理比 RTX 4090 慢约 10 倍。`VOXCPM_OPTIMIZE` 默认已关闭，且在 CPU 下也会自动禁用。
 
 ## 声音目录
 
@@ -92,7 +92,7 @@ instructions  = "年轻女性，声音温柔甜美"
 | `VOXCPM_DEVICE` | `auto` | `auto` / `cuda` / `cpu` |
 | `VOXCPM_CUDA_INDEX` | `0` | CUDA 下的 GPU 索引 |
 | `VOXCPM_DTYPE` | `float16` | `float16` / `bfloat16` / `float32`；在 `/healthz` 中回显；CPU 路径自动降为 `float32` |
-| `VOXCPM_OPTIMIZE` | `true` | 启用 `torch.compile` 和预热合成。CPU 环境下自动关闭 |
+| `VOXCPM_OPTIMIZE` | `false` | 启用 `torch.compile` 和预热合成。CPU 环境下自动关闭。GPU 环境可选开启，启动多一次 1–2 分钟预热，推理延迟可降 20–30% |
 | `VOXCPM_LOAD_DENOISER` | `false` | 加载 ZipEnhancer 去噪器（约 700 MB）。客户端传 `denoise=true` 时需要 |
 | `VOXCPM_ZIPENHANCER_MODEL` | `iic/speech_zipenhancer_ans_multiloss_16k_base` | ModelScope 去噪模型 ID |
 | `VOXCPM_LOCAL_FILES_ONLY` | `false` | 禁止 `snapshot_download` 联网（也可用 `HF_HUB_OFFLINE=1`） |
