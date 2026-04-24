@@ -5,7 +5,7 @@ set -euo pipefail
 : "${VOXCPM_MODEL:=openbmb/VoxCPM2}"
 : "${VOXCPM_DEVICE:=auto}"
 : "${VOXCPM_DTYPE:=float16}"
-: "${VOXCPM_COMPILE:=true}"
+: "${VOXCPM_COMPILE:=false}"
 : "${VOXCPM_LOAD_DENOISER:=false}"
 : "${VOXCPM_CLONE_MODE:=ref_continuation}"
 
