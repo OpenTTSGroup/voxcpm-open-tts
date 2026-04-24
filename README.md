@@ -45,7 +45,7 @@ docker run --rm -p 8000:8000 \
   ghcr.io/openttsgroup/voxcpm-open-tts:latest
 ```
 
-CPU inference is ~10× slower than an RTX 4090. `VOXCPM_OPTIMIZE` is off by default and is ignored on CPU anyway.
+CPU inference is ~10× slower than an RTX 4090. `VOXCPM_COMPILE` is off by default and is ignored on CPU anyway.
 
 ## Voice directory
 
@@ -92,7 +92,7 @@ All settings read from environment variables (case-insensitive). Prefix `VOXCPM_
 | `VOXCPM_DEVICE` | `auto` | `auto` / `cuda` / `cpu` |
 | `VOXCPM_CUDA_INDEX` | `0` | GPU index when device is CUDA |
 | `VOXCPM_DTYPE` | `float16` | `float16` / `bfloat16` / `float32`. Reported in `/healthz`; CPU path auto-downgrades to `float32`. |
-| `VOXCPM_OPTIMIZE` | `false` | Enable `torch.compile` and a warm-up synthesis. Disabled automatically on CPU. Opt in on GPU for ~20–30% latency reduction after a one-time ~1–2 min warm-up. |
+| `VOXCPM_COMPILE` | `false` | Enable `torch.compile` and a warm-up synthesis. Disabled automatically on CPU. Opt in on GPU for ~20–30% latency reduction after a one-time ~1–2 min warm-up. |
 | `VOXCPM_LOAD_DENOISER` | `false` | Load the ZipEnhancer denoiser (~700 MB). Required if clients pass `denoise=true`. |
 | `VOXCPM_ZIPENHANCER_MODEL` | `iic/speech_zipenhancer_ans_multiloss_16k_base` | ModelScope denoiser id |
 | `VOXCPM_LOCAL_FILES_ONLY` | `false` | Refuse network `snapshot_download` calls (also honours `HF_HUB_OFFLINE=1`) |

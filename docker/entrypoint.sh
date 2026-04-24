@@ -5,7 +5,7 @@ set -euo pipefail
 : "${VOXCPM_MODEL:=openbmb/VoxCPM2}"
 : "${VOXCPM_DEVICE:=auto}"
 : "${VOXCPM_DTYPE:=float16}"
-: "${VOXCPM_OPTIMIZE:=true}"
+: "${VOXCPM_COMPILE:=true}"
 : "${VOXCPM_LOAD_DENOISER:=false}"
 : "${VOXCPM_CLONE_MODE:=ref_continuation}"
 
@@ -18,7 +18,7 @@ set -euo pipefail
 : "${PYTHONPATH:=/opt/api:/opt/api/engine/src}"
 : "${VOXCPM_ROOT:=/opt/api/engine}"
 
-export VOXCPM_MODEL VOXCPM_DEVICE VOXCPM_DTYPE VOXCPM_OPTIMIZE \
+export VOXCPM_MODEL VOXCPM_DEVICE VOXCPM_DTYPE VOXCPM_COMPILE \
        VOXCPM_LOAD_DENOISER VOXCPM_CLONE_MODE \
        VOICES_DIR HOST PORT LOG_LEVEL CORS_ENABLED \
        PYTHONPATH VOXCPM_ROOT

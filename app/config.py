@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     voxcpm_device: Literal["auto", "cuda", "cpu"] = "auto"
     voxcpm_cuda_index: int = Field(default=0, ge=0)
     voxcpm_dtype: Literal["float16", "bfloat16", "float32"] = "float16"
-    voxcpm_optimize: bool = Field(
+    voxcpm_compile: bool = Field(
         default=False,
         description="Enable torch.compile-based optimisation inside VoxCPM.from_pretrained.",
     )

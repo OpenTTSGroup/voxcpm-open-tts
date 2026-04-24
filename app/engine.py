@@ -41,11 +41,11 @@ class TTSEngine:
         self._settings = settings
         self._device = settings.resolved_device
         # CPU path cannot reliably compile nor run fp16 inference.
-        self._optimize = settings.voxcpm_optimize and self._device.startswith("cuda")
+        self._optimize = settings.voxcpm_compile and self._device.startswith("cuda")
         self._dtype_str = settings.effective_dtype
-        if settings.voxcpm_optimize and not self._device.startswith("cuda"):
+        if settings.voxcpm_compile and not self._device.startswith("cuda"):
             log.warning(
-                "voxcpm_optimize=true but device=%s; disabling torch.compile on CPU",
+                "voxcpm_compile=true but device=%s; disabling torch.compile on CPU",
                 self._device,
             )
 
